@@ -66,12 +66,20 @@ export function RubricGenerator() {
         <div className="mb-6">
           <div className="mb-3 text-lg font-medium">How would you like to create your rubric?</div>
           <div className="grid grid-cols-2 gap-4">
-            <div
-              className={`flex cursor-pointer flex-col items-center rounded-lg border p-4 ${inputMethod === 'text' ? 'border-primary bg-primary/5' : 'border-gray-200'} `}
+            <button
+              type="button"
+              className={`flex cursor-pointer flex-col items-center rounded-lg border p-4 text-left ${inputMethod === 'text' ? 'border-primary bg-primary/5' : 'border-gray-200'} `}
               onClick={() => {
                 setInputMethod('text')
                 form.setValue('inputMethod', 'text')
               }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setInputMethod('text')
+                  form.setValue('inputMethod', 'text')
+                }
+              }}
+              aria-pressed={inputMethod === 'text'}
             >
               <div className="bg-primary/10 mb-2 rounded-full p-2">
                 <FileText className="text-primary h-6 w-6" />
@@ -80,14 +88,22 @@ export function RubricGenerator() {
               <div className="mt-1 text-center text-sm text-gray-500">
                 Create a rubric by providing text information
               </div>
-            </div>
+            </button>
 
-            <div
-              className={`flex cursor-pointer flex-col items-center rounded-lg border p-4 ${inputMethod === 'file' ? 'border-primary bg-primary/5' : 'border-gray-200'} `}
+            <button
+              type="button"
+              className={`flex cursor-pointer flex-col items-center rounded-lg border p-4 text-left ${inputMethod === 'file' ? 'border-primary bg-primary/5' : 'border-gray-200'} `}
               onClick={() => {
                 setInputMethod('file')
                 form.setValue('inputMethod', 'file')
               }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setInputMethod('file')
+                  form.setValue('inputMethod', 'file')
+                }
+              }}
+              aria-pressed={inputMethod === 'file'}
             >
               <div className="bg-primary/10 mb-2 rounded-full p-2">
                 <Upload className="text-primary h-6 w-6" />
@@ -96,7 +112,7 @@ export function RubricGenerator() {
               <div className="mt-1 text-center text-sm text-gray-500">
                 Create a rubric based on an uploaded document
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
