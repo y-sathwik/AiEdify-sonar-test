@@ -4,7 +4,7 @@ export const formSchema = z.object({
   assignmentType: z.string().min(1, 'Assignment type is required'),
   customAssignmentType: z.string().optional(),
   keyStage: z.string().regex(/^ks[3-5]$/, 'Key stage must be ks3, ks4, or ks5'),
-  yearGroup: z.string().regex(/^[7-9]|1[0-3]$/, 'Year group must be between 7 and 13'),
+  yearGroup: z.string().regex(/^([7-9]|1[0-3])$/, 'Year group must be between 7 and 13'),
   assessmentType: z.string().min(1, 'Assessment type is required'),
   topic: z.string().min(1, 'Topic is required'),
   criteria: z
