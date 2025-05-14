@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { ToolLayout } from '@/components/tools/tool-interface'
+import { generateStableKey } from '@/utils/key-generators'
 import {
   Form,
   FormControl,
@@ -25,14 +26,6 @@ import { RequiredLabel } from '@/components/tools/required-label'
 import { FormValues, formSchema, ClarifyOutput, ChallengeOutput } from './schema'
 import { generateClarifyOrChallenge } from './services'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-
-// Add a utility function to generate stable keys
-function generateStableKey(prefix: string, content: string, index: number): string {
-  return `${prefix}-${content
-    .slice(0, 20)
-    .toLowerCase()
-    .replace(/[^a-z0-9]/g, '-')}-${index}`
-}
 
 export function ClarifyOrChallenge() {
   const [response, setResponse] = useState<ClarifyOutput | ChallengeOutput | null>(null)
@@ -238,23 +231,23 @@ export function ClarifyOrChallenge() {
       return null
     }
 
-    // Log which response type is being rendered
-    console.log(
-      'Response type being rendered:',
-      'main_argument' in response
-        ? 'Clarify'
-        : 'critical_reflection_questions' in response
-          ? 'Challenge'
-          : 'Unknown'
-    )
-
-    // Check if it's a clarify response
+    // Determine response type using a clear if-else structure
+    let responseType = 'Unknown'
     if ('main_argument' in response) {
+      responseType = 'Clarify'
+    } else if ('critical_reflection_questions' in response) {
+      responseType = 'Challenge'
+    }
+
+    // Log which response type is being rendered
+    console.log('Response type being rendered:', responseType)
+
+    // Render appropriate component based on response type
+    if (responseType === 'Clarify') {
       return renderClarifyOutput(response as ClarifyOutput)
     }
 
-    // Check if it's a challenge response
-    if ('critical_reflection_questions' in response) {
+    if (responseType === 'Challenge') {
       return renderChallengeOutput(response as ChallengeOutput)
     }
 
