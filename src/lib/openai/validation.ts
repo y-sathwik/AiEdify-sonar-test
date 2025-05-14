@@ -32,7 +32,7 @@ export function validateOpenAIResponse(response: unknown): boolean {
 export function extractContentFromResponse(response: unknown): string | null {
   try {
     const validatedResponse = openAIResponseSchema.parse(response) as OpenAIResponse
-    return validatedResponse.choices[0]?.message?.content || null
+    return validatedResponse.choices[0]?.message?.content ?? null
   } catch (error) {
     console.error('Failed to extract content from response:', error)
     return null
