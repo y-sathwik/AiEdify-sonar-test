@@ -13,7 +13,7 @@ export async function extractTextFromDOCX(fileBuffer: ArrayBuffer): Promise<stri
     const result = await mammoth.extractRawText({ arrayBuffer: fileBuffer })
 
     // Return the text content
-    return result.value || ''
+    return result.value ?? ''
   } catch (error) {
     console.error('Error extracting text from DOCX:', error)
     throw new Error('Failed to extract text from DOCX file')
