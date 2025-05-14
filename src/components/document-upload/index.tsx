@@ -53,7 +53,7 @@ export default function DocumentUpload({
   uploadedFileName = '',
   successMessage = 'Document uploaded successfully',
   required = false,
-}: DocumentUploadProps) {
+}: Readonly<DocumentUploadProps>) {
   const [internalLoading, setInternalLoading] = useState(false)
   const [internalUploaded, setInternalUploaded] = useState(false)
   const [selectedFileName, setSelectedFileName] = useState(uploadedFileName)
