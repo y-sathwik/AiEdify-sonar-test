@@ -147,8 +147,8 @@ export function generateMarkdown(
     const links = lessonPlan.crossCurricularLinks.map((link) => {
       const parts = link.split(':')
       return {
-        subject: parts[0]?.trim() || 'Subject',
-        description: parts[1]?.trim() || link,
+        subject: parts[0]?.trim() ?? 'Subject',
+        description: parts[1]?.trim() ?? link,
       }
     })
     markdown += formatCrossCurricularLinks(links, options) + '\n\n'
