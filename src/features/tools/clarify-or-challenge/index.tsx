@@ -114,7 +114,7 @@ export function ClarifyOrChallenge() {
 
         <Card>
           <CardContent className="pt-6">
-            <h3 className="text-primary mb-4 text-lg font-semibold">Applications in Practice</h3>
+            <h3 className="text-primary mb-4 text-lg font-semibold">Applications in Practice.</h3>
             <div className="space-y-4">
               {data.applications_in_practice.map((application, index) => (
                 <div
