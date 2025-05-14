@@ -25,7 +25,7 @@ interface MetadataDisplayProps {
 }
 
 const MetadataDisplay = ({ rubricData }: MetadataDisplayProps) => {
-  if (!rubricData || !rubricData.data || !rubricData.data.metadata) {
+  if (!rubricData?.data?.metadata) {
     return null
   }
 
@@ -33,14 +33,14 @@ const MetadataDisplay = ({ rubricData }: MetadataDisplayProps) => {
 
   // Debug log to see what values we're actually getting
   console.log('Rubric metadata:', metadata)
-  console.log('Assessment Type:', metadata.assessmentType)
-  console.log('Assessor:', metadata.assessor)
+  console.log('Assessment Type:', metadata?.assessmentType)
+  console.log('Assessor:', metadata?.assessor)
 
   // Determine display assessor based on assessmentType directly
   let displayAssessor
-  if (metadata.assessmentType && metadata.assessmentType.toLowerCase().includes('peer')) {
+  if (metadata?.assessmentType?.toLowerCase().includes('peer')) {
     displayAssessor = 'Peer'
-  } else if (metadata.assessmentType && metadata.assessmentType.toLowerCase().includes('self')) {
+  } else if (metadata?.assessmentType?.toLowerCase().includes('self')) {
     displayAssessor = 'Self'
   } else {
     displayAssessor = 'Class Teacher'
