@@ -57,12 +57,12 @@ const MetadataDisplay = ({ rubricData }: MetadataDisplayProps) => {
         <MetadataCard
           icon={<Tag className="h-5 w-5" />}
           label="Topic"
-          value={metadata.topic || ''}
+          value={metadata.topic ?? ''}
         />
         <MetadataCard
           icon={<BookOpen className="h-5 w-5" />}
           label="Subject"
-          value={metadata.subject || ''}
+          value={metadata.subject ?? ''}
         />
       </div>
 
@@ -71,7 +71,7 @@ const MetadataDisplay = ({ rubricData }: MetadataDisplayProps) => {
         <MetadataCard
           icon={<Award className="h-5 w-5" />}
           label="Assessment Type"
-          value={metadata.assessmentType || ''}
+          value={metadata.assessmentType ?? ''}
         />
         <MetadataCard
           icon={<User className="h-5 w-5" />}
@@ -100,7 +100,7 @@ export default function RubricResponseTable({ rubricData }: RubricResponseTableP
 
   // Get the key stage number from the string (e.g., "ks3" -> 3)
   const keyStageNumber = parseInt(
-    (rubricData.data.metadata?.keyStage || '').replace('ks', '') || '0'
+    (rubricData.data.metadata?.keyStage ?? '').replace('ks', '') ?? '0'
   )
 
   // Define all possible levels with their keys and labels
@@ -166,7 +166,7 @@ export default function RubricResponseTable({ rubricData }: RubricResponseTableP
             {rubricData.data.rubric.criteria.map((criterion, idx) => (
               <tr key={idx} className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                 <td className="border-r border-b p-3 font-semibold">
-                  {criterion.name || 'Unnamed Criterion'}
+                  {criterion.name ?? 'Unnamed Criterion'}
                 </td>
                 {visibleLevels.map((level) => {
                   const levelData = criterion.levels[level.key as keyof typeof criterion.levels]
@@ -175,9 +175,9 @@ export default function RubricResponseTable({ rubricData }: RubricResponseTableP
                       <div className="space-y-2">
                         {levelData && (
                           <>
-                            <div>{levelData.description || ''}</div>
+                            <div>{levelData.description ?? ''}</div>
                             <div className="text-primary text-sm italic">
-                              {levelData.feedback || ''}
+                              {levelData.feedback ?? ''}
                             </div>
                           </>
                         )}
