@@ -26,6 +26,14 @@ import { FormValues, formSchema, ClarifyOutput, ChallengeOutput } from './schema
 import { generateClarifyOrChallenge } from './services'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
+// Add a utility function to generate stable keys
+function generateStableKey(prefix: string, content: string, index: number): string {
+  return `${prefix}-${content
+    .slice(0, 20)
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '-')}-${index}`
+}
+
 export function ClarifyOrChallenge() {
   const [response, setResponse] = useState<ClarifyOutput | ChallengeOutput | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -90,7 +98,10 @@ export function ClarifyOrChallenge() {
             <h3 className="text-primary mb-4 text-lg font-semibold">Key Concepts</h3>
             <div className="space-y-4">
               {data.key_concepts.map((concept, index) => (
-                <div key={index} className="border-b pb-3 last:border-0">
+                <div
+                  key={generateStableKey('concept', concept.title, index)}
+                  className="border-b pb-3 last:border-0"
+                >
                   <h4 className="text-secondary font-medium">{concept.title}</h4>
                   <p className="text-muted-foreground">{concept.description}</p>
                 </div>
@@ -104,7 +115,7 @@ export function ClarifyOrChallenge() {
             <h3 className="text-primary mb-2 text-lg font-semibold">Critical Details</h3>
             <ul className="marker:text-secondary list-disc space-y-1 pl-5">
               {data.critical_details.map((detail, index) => (
-                <li key={index}>{detail}</li>
+                <li key={generateStableKey('detail', detail, index)}>{detail}</li>
               ))}
             </ul>
           </CardContent>
@@ -115,7 +126,10 @@ export function ClarifyOrChallenge() {
             <h3 className="text-primary mb-4 text-lg font-semibold">Applications in Practice</h3>
             <div className="space-y-4">
               {data.applications_in_practice.map((application, index) => (
-                <div key={index} className="border-b pb-3 last:border-0">
+                <div
+                  key={generateStableKey('application', application.example, index)}
+                  className="border-b pb-3 last:border-0"
+                >
                   <h4 className="text-secondary font-medium">{application.example}</h4>
                   <p className="text-muted-foreground">{application.description}</p>
                 </div>
@@ -147,7 +161,7 @@ export function ClarifyOrChallenge() {
             </h3>
             <ul className="marker:text-secondary list-disc space-y-1 pl-5">
               {data.critical_reflection_questions.map((question, index) => (
-                <li key={index}>{question}</li>
+                <li key={generateStableKey('question', question, index)}>{question}</li>
               ))}
             </ul>
           </CardContent>
@@ -158,7 +172,10 @@ export function ClarifyOrChallenge() {
             <h3 className="text-primary mb-4 text-lg font-semibold">Advanced Concepts</h3>
             <div className="space-y-4">
               {data.advanced_concepts.map((item, index) => (
-                <div key={index} className="border-b pb-3 last:border-0">
+                <div
+                  key={generateStableKey('concept', item.concept, index)}
+                  className="border-b pb-3 last:border-0"
+                >
                   <h4 className="text-secondary font-medium">{item.concept}</h4>
                   <p className="text-muted-foreground">{item.explanation}</p>
                 </div>
@@ -174,7 +191,10 @@ export function ClarifyOrChallenge() {
             </h3>
             <div className="space-y-4">
               {data.interdisciplinary_connections.map((item, index) => (
-                <div key={index} className="border-b pb-3 last:border-0">
+                <div
+                  key={generateStableKey('connection', item.field, index)}
+                  className="border-b pb-3 last:border-0"
+                >
                   <h4 className="text-secondary font-medium">{item.field}</h4>
                   <p className="text-muted-foreground">{item.connection}</p>
                 </div>
@@ -188,7 +208,7 @@ export function ClarifyOrChallenge() {
             <h3 className="text-primary mb-2 text-lg font-semibold">Counterarguments</h3>
             <ul className="marker:text-secondary list-disc space-y-1 pl-5">
               {data.counterarguments.map((argument, index) => (
-                <li key={index}>{argument}</li>
+                <li key={generateStableKey('argument', argument, index)}>{argument}</li>
               ))}
             </ul>
           </CardContent>
@@ -199,7 +219,7 @@ export function ClarifyOrChallenge() {
             <h3 className="text-primary mb-2 text-lg font-semibold">Future Challenges</h3>
             <ul className="marker:text-secondary list-disc space-y-1 pl-5">
               {data.future_challenges.map((challenge, index) => (
-                <li key={index}>{challenge}</li>
+                <li key={generateStableKey('challenge', challenge, index)}>{challenge}</li>
               ))}
             </ul>
           </CardContent>
