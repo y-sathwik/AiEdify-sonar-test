@@ -17,7 +17,7 @@ type ToolPageProps = {
   params: Promise<{ slug: string }>
 }
 
-export default async function ToolPage({ params }: ToolPageProps) {
+export default async function ToolPage({ params }: Readonly<ToolPageProps>) {
   const { slug } = await params
   const tool = tools.find((t) => t.slug === slug)
 
