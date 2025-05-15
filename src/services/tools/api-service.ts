@@ -45,7 +45,7 @@ export async function callToolApi<T>(
 
     const responseData = await response.json()
     if (!responseData.data) {
-      throw new Error('Invalid response format from API')
+      throw new Error('Invalid responses format from API')
     }
 
     return { data: responseData.data as T }
