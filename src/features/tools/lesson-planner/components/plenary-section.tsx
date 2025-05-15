@@ -15,15 +15,23 @@ const PlenarySection: React.FC<PlenarySectionProps> = ({ content }) => {
   const successSection = extractSection(content, 'Success Indicators', null)
 
   // Extract duration from heading
-  const durationMatch =
-    plenarySection.match(/Plenary \((\d+) minutes\)/) ||
-    plenarySection.match(/plenary \((\d+) minutes\)/)
+  const plenaryRegex = /Plenary \((\d+) minutes\)/
+  const plenaryLowerRegex = /plenary \((\d+) minutes\)/
+
+  let durationMatch = plenaryRegex.exec(plenarySection)
+  if (!durationMatch) {
+    durationMatch = plenaryLowerRegex.exec(plenarySection)
+  }
   const duration = durationMatch ? durationMatch[1] : null
 
   // Extract instructions
-  const instructionsMatch =
-    plenarySection.match(/Instructions:([\s\S]*?)$/) ||
-    plenarySection.match(/instructions:([\s\S]*?)$/)
+  const instructionsRegex = /Instructions:([\s\S]*?)$/
+  const instructionsLowerRegex = /instructions:([\s\S]*?)$/
+
+  let instructionsMatch = instructionsRegex.exec(plenarySection)
+  if (!instructionsMatch) {
+    instructionsMatch = instructionsLowerRegex.exec(plenarySection)
+  }
   const instructions = instructionsMatch ? cleanContent(instructionsMatch[1]) : []
 
   // Extract description with better content cleaning
