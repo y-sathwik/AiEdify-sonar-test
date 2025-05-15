@@ -178,7 +178,7 @@ export function useRubricGenerator() {
       // Check if the response is ok
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to generate rubric')
+        throw new Error(errorData.error ?? 'Failed to generate rubric')
       }
 
       // Parse the response
