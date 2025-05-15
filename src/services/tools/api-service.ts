@@ -34,13 +34,13 @@ export async function callToolApi<T>(
         const errorMessages = errorData.details
           .map(
             (err: { path?: string[]; message?: string }) =>
-              `${err.path?.join('.') || ''} - ${err.message || ''}`
+              `${err.path?.join('.') ?? ''} - ${err.message ?? ''}`
           )
           .join('\n')
         throw new Error(`Validation errors:\n${errorMessages}`)
       }
 
-      throw new Error(errorData.error || 'Failed to generate response')
+      throw new Error(errorData.error ?? 'Failed to generate response')
     }
 
     const responseData = await response.json()
