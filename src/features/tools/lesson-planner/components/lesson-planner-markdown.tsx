@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BookOpen, Clock, Brain } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { generateStableKey } from '@/utils/key-generators'
 
 // Import our components
 import {
@@ -147,7 +148,10 @@ const LessonPlanMarkdown: React.FC<LessonPlanMarkdownProps> = ({ content, classN
             <SectionCard title="Cross-Curricular Links">
               <div className="space-y-3">
                 {parsedContent.additionalContent.crossCurricularItems.map((item, index) => (
-                  <div key={index} className="border-b pb-2 last:border-0 last:pb-0">
+                  <div
+                    key={generateStableKey('curriculum', item.subject, index)}
+                    className="border-b pb-2 last:border-0 last:pb-0"
+                  >
                     <h5 className="text-secondary text-sm font-medium">{item.subject}</h5>
                     <p className="text-sm">{item.description}</p>
                   </div>
