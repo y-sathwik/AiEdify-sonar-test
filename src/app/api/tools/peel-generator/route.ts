@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-import { peelGeneratorInputSchema } from '@/features/tools/peel-generator/schema'
-import { generateAiResponse } from '@/utils/ai-service'
-import { SYSTEM_PROMPTS } from '@/constants/system-prompt'
-import { SCHEMA_DESCRIPTIONS } from '@/constants/schema-descriptions'
 import {
+  peelGeneratorInputSchema,
   peelGeneratorResponseSchema,
   PEELGeneratorResponse,
 } from '@/features/tools/peel-generator/schema'
+import { generateAiResponse } from '@/utils/ai-service'
+import { SYSTEM_PROMPTS } from '@/constants/system-prompt'
+import { SCHEMA_DESCRIPTIONS } from '@/constants/schema-descriptions'
 import { generatePEELPrompt } from '@/constants/prompts/peel-generator'
 
 export const maxDuration = 300 // 5 minutes timeout
