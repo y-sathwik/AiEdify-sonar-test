@@ -65,8 +65,8 @@ export default function DocumentUpload({
 
   // Determine file type icon
   const getFileIcon = () => {
-    const fileName = uploadedFileName || selectedFileName || ''
-    const extension = fileName.split('.').pop()?.toLowerCase() || ''
+    const fileName = uploadedFileName ?? selectedFileName ?? ''
+    const extension = fileName.split('.').pop()?.toLowerCase() ?? ''
 
     if (extension === 'pdf') {
       return <File className="h-12 w-12 text-red-500" />
