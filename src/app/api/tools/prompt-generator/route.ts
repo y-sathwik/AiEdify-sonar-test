@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-import { promptGeneratorInputSchema } from '@/features/tools/prompt-generator/schema'
-import { generateAiResponse } from '@/utils/ai-service'
-import { SYSTEM_PROMPTS } from '@/constants/system-prompt'
-import { SCHEMA_DESCRIPTIONS } from '@/constants/schema-descriptions'
 import {
+  promptGeneratorInputSchema,
   promptGeneratorResponseSchema,
   PromptGeneratorResponse,
 } from '@/features/tools/prompt-generator/schema'
+import { generateAiResponse } from '@/utils/ai-service'
+import { SYSTEM_PROMPTS } from '@/constants/system-prompt'
+import { SCHEMA_DESCRIPTIONS } from '@/constants/schema-descriptions'
 import { generatePromptGeneratorPrompt } from '@/constants/prompts/prompt-generator'
 
 export const maxDuration = 300 // 5 minutes timeout
