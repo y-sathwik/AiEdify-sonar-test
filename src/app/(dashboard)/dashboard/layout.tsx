@@ -7,7 +7,9 @@ import { UserNav } from '@/components/dashboard/user-nav'
 import { ModeToggle } from '@/components/mode-toggle'
 import { ToolProvider } from '@/contexts/tool-context'
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   await requireAuth()
   const user = await getUserDetails()
 
