@@ -8,7 +8,7 @@ import { PromptGeneratorResponse } from '../schema'
 function mapFormDataToApiInput(data: FormValues) {
   return {
     originalPrompt: data.originalPrompt,
-    focusAreas: data.focusAreas || [], // Provide empty array as default
+    focusAreas: data.focusAreas ?? [], // Provide empty array as default
   }
 }
 
