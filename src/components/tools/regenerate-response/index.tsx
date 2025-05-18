@@ -16,7 +16,7 @@ export function RegenerateResponse({
   showIcon = true,
   text = 'Regenerate',
   ...props
-}: RegenerateResponseProps) {
+}: Readonly<RegenerateResponseProps>) {
   return (
     <Button
       variant={variant}
