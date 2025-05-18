@@ -16,6 +16,9 @@ export const generateRubricPrompt = (input: FormValues): string => {
       ? documentContent.substring(0, maxContentLength) + '...'
       : documentContent
 
+  // Extract the document content section to avoid nested template literals
+  const documentContentSection = truncatedContent ? `Document Content:\n${truncatedContent}` : ''
+
   return `Create an assessment rubric with the following details:
 
 Assignment Details:
@@ -31,5 +34,5 @@ Required Criteria: ${input.criteria.join(', ')}
 
 ${input.additionalInstructions ? `Additional Instructions: ${input.additionalInstructions}` : ''}
 
-${truncatedContent ? `Document Content:\n${truncatedContent}` : ''}`
+${documentContentSection}`
 }
