@@ -8,7 +8,7 @@ interface MainNavProps {
   className?: string
 }
 
-export function MainNav({ className }: MainNavProps) {
+export function MainNav({ className }: Readonly<MainNavProps>) {
   const pathname = usePathname()
 
   const navItems = [
