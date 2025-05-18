@@ -6,7 +6,7 @@ import { FormValues } from '@/features/tools/rubric-generator/schema'
 export const generateRubricPrompt = (input: FormValues): string => {
   // Get document content from the fileContent field if available
   // Otherwise use an empty string
-  const documentContent = input.fileContent || ''
+  const documentContent = input.fileContent ?? ''
 
   // Truncate document content to a reasonable length (max 3000 chars)
   // to avoid exceeding token limits
