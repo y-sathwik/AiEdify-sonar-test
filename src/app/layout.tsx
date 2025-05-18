@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Powerful AI tools for users and organizations',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
