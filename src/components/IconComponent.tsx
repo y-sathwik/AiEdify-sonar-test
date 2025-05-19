@@ -5,8 +5,8 @@ import * as LucideIcons from 'lucide-react'
 import { LucideProps } from 'lucide-react'
 
 interface IconComponentProps {
-  name: string
-  className?: string
+  readonly name: string
+  readonly className?: string
 }
 
 export default function IconComponent({ name, className }: IconComponentProps) {
