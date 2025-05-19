@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { generateStableKey } from '@/utils/key-generators'
 import {
   DndContext,
   closestCenter,
@@ -130,14 +131,16 @@ export default function SortableCriteria({
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext
-          items={criteria.map((_, index) => `criterion-${index}`)}
+          items={criteria.map((criterion, index) =>
+            generateStableKey('criterion', criterion, index)
+          )}
           strategy={verticalListSortingStrategy}
         >
           <div className="space-y-2">
             {criteria.map((criterion, index) => (
               <SortableCriterion
-                key={`criterion-${index}`}
-                id={`criterion-${index}`}
+                key={generateStableKey('criterion', criterion, index)}
+                id={generateStableKey('criterion', criterion, index)}
                 criterion={criterion}
                 index={index}
                 updateCriterion={updateCriterion}
