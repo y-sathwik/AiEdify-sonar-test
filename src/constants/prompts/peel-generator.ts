@@ -46,8 +46,8 @@ Return a JSON object with these exact keys:
     }
   },
   "metadata": {
-    "subject": "${input.subject || ''}",
-    "complexity": "${input.complexity || ''}",
+    "subject": "${input.subject ?? ''}",
+    "complexity": "${input.complexity ?? ''}",
     "timestamp": "${new Date().toISOString()}"
   }
 }
