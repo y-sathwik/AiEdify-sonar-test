@@ -76,11 +76,11 @@ const SortableCriterion = ({
 
 // Main sortable criteria component
 interface SortableCriteriaProps {
-  criteria: string[]
-  addCriterion: () => void
-  removeCriterion: (index: number) => void
-  updateCriterion: (index: number, value: string) => void
-  handleDragEnd: (event: DragEndEvent) => void
+  readonly criteria: readonly string[]
+  readonly addCriterion: () => void
+  readonly removeCriterion: (index: number) => void
+  readonly updateCriterion: (index: number, value: string) => void
+  readonly handleDragEnd: (event: DragEndEvent) => void
 }
 
 export default function SortableCriteria({
