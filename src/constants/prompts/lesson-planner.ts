@@ -44,7 +44,7 @@ export const generateLessonPlanPrompt = (input: LessonPlan): string => {
   - Support analytical discussion
   - Focus on evidence-based learning
   ${input.activities?.some((a) => a.differentiation) ? '- Support diverse learning needs' : ''}
-  ${input.activities?.some((a) => a.differentiation?.visualImpairment || a.differentiation?.hearingImpairment) ? '- Ensure accessible learning materials' : ''}
+  ${input.activities?.some((a) => a.differentiation?.visualImpairment ?? a.differentiation?.hearingImpairment) ? '- Ensure accessible learning materials' : ''}
 
   TIMING REQUIREMENT: Each approach must total EXACTLY ${input.duration} minutes.`
 }
