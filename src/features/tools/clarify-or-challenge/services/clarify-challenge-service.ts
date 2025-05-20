@@ -46,7 +46,7 @@ export async function generateClarifyOrChallenge(data: FormValues): Promise<{
     if (error || !responseData) {
       console.error('API error:', error)
       return {
-        error: error || 'Failed to generate response',
+        error: error ?? 'Failed to generate response',
       }
     }
 
