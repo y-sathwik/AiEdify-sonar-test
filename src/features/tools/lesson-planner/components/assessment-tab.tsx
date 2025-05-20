@@ -1,6 +1,7 @@
 import React from 'react'
 import { SectionCard, ContentList, SectionTitle } from './section-components'
 import { cleanContent, extractSection, processCrossCurricular } from '../utils/content-extraction'
+import { generateStableKey } from '@/utils/key-generators'
 
 interface AssessmentTabProps {
   content: string
@@ -84,14 +85,19 @@ const AssessmentTab: React.FC<AssessmentTabProps> = ({ content }) => {
       {crossCurricularItems.length > 0 && (
         <SectionCard title="Cross-Curricular Links" className="mt-6">
           <div className="space-y-3">
-            {crossCurricularItems.map(
-              (item: { subject: string; description: string }, index: number) => (
-                <div key={index} className="border-b pb-2 last:border-0 last:pb-0">
-                  <h5 className="text-secondary text-sm font-medium">{item.subject}</h5>
-                  <p className="text-sm">{item.description}</p>
-                </div>
-              )
-            )}
+            {crossCurricularItems.map((item: { subject: string; description: string }) => (
+              <div
+                key={generateStableKey(
+                  'cross-curricular',
+                  `${item.subject}-${item.description}`,
+                  crossCurricularItems.indexOf(item)
+                )}
+                className="border-b pb-2 last:border-0 last:pb-0"
+              >
+                <h5 className="text-secondary text-sm font-medium">{item.subject}</h5>
+                <p className="text-sm">{item.description}</p>
+              </div>
+            ))}
           </div>
         </SectionCard>
       )}
