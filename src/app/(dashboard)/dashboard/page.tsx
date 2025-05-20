@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Welcome, {user.full_name || 'User'}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Welcome, {user.full_name ?? 'User'}</h1>
         <p className="text-muted-foreground">Here&apos;s an overview of your AI tools and usage.</p>
       </div>
 
