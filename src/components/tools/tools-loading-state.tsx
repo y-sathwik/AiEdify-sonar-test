@@ -6,8 +6,8 @@ import { LightbulbIcon } from 'lucide-react'
 import { EDUCATIONAL_FACTS } from '@/constants/edu-facts'
 
 interface ToolsLoadingStateProps {
-  toolName: string
-  onComplete?: () => void
+  readonly toolName: string
+  readonly onComplete?: () => void
 }
 
 export function ToolsLoadingState({ toolName, onComplete }: ToolsLoadingStateProps) {
