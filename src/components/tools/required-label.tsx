@@ -5,7 +5,7 @@ interface RequiredLabelProps {
   children: React.ReactNode
 }
 
-export function RequiredLabel({ children }: RequiredLabelProps) {
+export function RequiredLabel({ children }: Readonly<RequiredLabelProps>) {
   return (
     <FormLabel>
       {children} <span className="text-destructive">*</span>
