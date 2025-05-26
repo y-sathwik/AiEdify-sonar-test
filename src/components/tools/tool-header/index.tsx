@@ -8,7 +8,7 @@ import { useToolContext } from '@/contexts/tool-context'
 import { tools } from '@/lib/tools-data'
 
 interface ToolPageHeaderProps {
-  tool: (typeof tools)[number]
+  readonly tool: (typeof tools)[number]
 }
 
 export function ToolPageHeader({ tool }: ToolPageHeaderProps) {
