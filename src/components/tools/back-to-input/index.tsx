@@ -16,7 +16,7 @@ export function BackToInput({
   showIcon = true,
   text = 'Back to Input',
   ...props
-}: BackToInputProps) {
+}: Readonly<BackToInputProps>) {
   return (
     <Button
       variant={variant}
