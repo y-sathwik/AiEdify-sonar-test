@@ -9,7 +9,7 @@ interface BackToTopProps {
   className?: string
 }
 
-export function BackToTop({ threshold = 300, className = '' }: BackToTopProps) {
+export function BackToTop({ threshold = 300, className = '' }: Readonly<BackToTopProps>) {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
