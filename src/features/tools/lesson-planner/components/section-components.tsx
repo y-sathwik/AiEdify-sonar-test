@@ -1,6 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { generateStableKey } from '@/utils/key-generators'
 
 /**
  * A set of reusable UI components for lesson plan sections
@@ -60,7 +61,10 @@ export const ContentList: React.FC<ContentListProps> = ({
   return (
     <ul className={cn('marker:text-primary list-disc space-y-2 pl-5', markerClassName, className)}>
       {items.map((item, i) => (
-        <li key={i} className={cn('text-sm', itemClassName)}>
+        <li
+          key={generateStableKey('content-list', item, i)}
+          className={cn('text-sm', itemClassName)}
+        >
           {item}
         </li>
       ))}
