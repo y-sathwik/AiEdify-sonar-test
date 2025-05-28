@@ -97,7 +97,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({ title, value, icon }) => {
       </div>
       <div>
         <p className="text-xs text-gray-500">{title}</p>
-        <p className="font-bold">{value || 'N/A'}</p>
+        <p className="font-bold">{value ?? 'N/A'}</p>
       </div>
     </div>
   )
