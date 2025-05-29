@@ -50,6 +50,18 @@ export function AuthForm({ type }: Readonly<AuthFormProps>) {
       : { email: '', password: '', fullName: '' },
   })
 
+  const getButtonContent = () => {
+    if (isLoading) {
+      return (
+        <>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          {isLogin ? 'Logging in...' : 'Signing up...'}
+        </>
+      )
+    }
+    return isLogin ? 'Log in' : 'Sign up'
+  }
+
   async function onSubmit(data: LoginFormValues | SignupFormValues) {
     setIsLoading(true)
 
@@ -140,16 +152,7 @@ export function AuthForm({ type }: Readonly<AuthFormProps>) {
           )}
         />
         <Button type="submit" className="w-full" disabled={isLoading}>
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {isLogin ? 'Logging in...' : 'Signing up...'}
-            </>
-          ) : isLogin ? (
-            'Log in'
-          ) : (
-            'Sign up'
-          )}
+          {getButtonContent()}
         </Button>
       </form>
     </Form>
