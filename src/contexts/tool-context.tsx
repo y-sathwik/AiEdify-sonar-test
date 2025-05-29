@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react'
 
 interface ToolContextType {
   isToolLoading: boolean
@@ -20,16 +20,15 @@ export function ToolProvider({ children }: Readonly<ToolProviderProps>) {
     setIsToolLoading(loading)
   }
 
-  return (
-    <ToolContext.Provider
-      value={{
-        isToolLoading,
-        setToolLoading,
-      }}
-    >
-      {children}
-    </ToolContext.Provider>
+  const value = useMemo(
+    () => ({
+      isToolLoading,
+      setToolLoading,
+    }),
+    [isToolLoading]
   )
+
+  return <ToolContext.Provider value={value}>{children}</ToolContext.Provider>
 }
 
 export function useToolContext() {
