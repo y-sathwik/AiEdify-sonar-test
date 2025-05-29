@@ -145,9 +145,7 @@ const PeelResponse: React.FC<PeelResponseProps> = ({ data }) => {
       let inList = false
       let result = ''
 
-      for (let i = 0; i < processedLines.length; i++) {
-        const line = processedLines[i]
-
+      for (const line of processedLines) {
         if (line.startsWith('<li')) {
           if (!inList) {
             result +=
