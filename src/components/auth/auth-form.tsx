@@ -35,7 +35,7 @@ interface AuthFormProps {
   type: 'login' | 'signup'
 }
 
-export function AuthForm({ type }: AuthFormProps) {
+export function AuthForm({ type }: Readonly<AuthFormProps>) {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const supabase = createClient()
