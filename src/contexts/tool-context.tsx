@@ -13,7 +13,7 @@ interface ToolProviderProps {
   children: ReactNode
 }
 
-export function ToolProvider({ children }: ToolProviderProps) {
+export function ToolProvider({ children }: Readonly<ToolProviderProps>) {
   const [isToolLoading, setIsToolLoading] = useState(false)
 
   const setToolLoading = (loading: boolean) => {
