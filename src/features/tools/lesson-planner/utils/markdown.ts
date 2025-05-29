@@ -60,12 +60,12 @@ export function formatLearningObjective(
   options: MarkdownOptions = defaultOptions
 ): string {
   const className =
-    options.customStyles?.learningObjective || defaultOptions.customStyles?.learningObjective
+    options.customStyles?.learningObjective ?? defaultOptions.customStyles?.learningObjective
   return `<div class="${className}">${content}</div>`
 }
 
 export function formatActivity(content: string, options: MarkdownOptions = defaultOptions): string {
-  const className = options.customStyles?.activity || defaultOptions.customStyles?.activity
+  const className = options.customStyles?.activity ?? defaultOptions.customStyles?.activity
   return `<div class="${className}">${content}</div>`
 }
 
@@ -74,7 +74,7 @@ export function formatMaterials(
   options: MarkdownOptions = defaultOptions
 ): string {
   if (!options.showMaterials) return ''
-  const className = options.customStyles?.materials || defaultOptions.customStyles?.materials
+  const className = options.customStyles?.materials ?? defaultOptions.customStyles?.materials
   const materialsList = materials.map((m) => `- ${m}`).join('\n')
   return `<div class="${className}">\n${materialsList}\n</div>`
 }
@@ -85,12 +85,12 @@ export function formatDifferentiation(
 ): string {
   if (!options.showDifferentiation) return ''
   const className =
-    options.customStyles?.differentiation || defaultOptions.customStyles?.differentiation
+    options.customStyles?.differentiation ?? defaultOptions.customStyles?.differentiation
   return `<div class="${className}">${content}</div>`
 }
 
 export function formatNote(content: string, options: MarkdownOptions = defaultOptions): string {
-  const className = options.customStyles?.note || defaultOptions.customStyles?.note
+  const className = options.customStyles?.note ?? defaultOptions.customStyles?.note
   return `<div class="${className}">${content}</div>`
 }
 
