@@ -31,11 +31,11 @@ function mapFormDataToLessonPlanInput(data: FormValues) {
         materials: ['Textbook', 'Worksheets', 'Digital resources'],
         differentiation: data.enableDifferentiation
           ? {
-              dyslexia: data.senConsiderations?.includes('dyslexia') || false,
-              adhd: data.senConsiderations?.includes('adhd') || false,
-              asd: data.senConsiderations?.includes('autism') || false,
-              visualImpairment: data.senConsiderations?.includes('visual') || false,
-              hearingImpairment: data.senConsiderations?.includes('hearing') || false,
+              dyslexia: data.senConsiderations?.includes('dyslexia') ?? false,
+              adhd: data.senConsiderations?.includes('adhd') ?? false,
+              asd: data.senConsiderations?.includes('autism') ?? false,
+              visualImpairment: data.senConsiderations?.includes('visual') ?? false,
+              hearingImpairment: data.senConsiderations?.includes('hearing') ?? false,
             }
           : undefined,
       },
@@ -72,7 +72,7 @@ export async function generateLessonPlan(
     if (error || !lessonPlan) {
       return {
         markdown: '',
-        error: error || 'Failed to generate lesson plan',
+        error: error ?? 'Failed to generate lesson plan',
       }
     }
 
