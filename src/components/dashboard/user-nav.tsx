@@ -24,7 +24,7 @@ interface UserNavProps {
   }
 }
 
-export function UserNav({ user }: UserNavProps) {
+export function UserNav({ user }: Readonly<UserNavProps>) {
   const router = useRouter()
   const supabase = createClient()
 
