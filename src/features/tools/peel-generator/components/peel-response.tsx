@@ -34,7 +34,7 @@ const InfoCard: React.FC<{
       </div>
       <div>
         <p className="text-xs text-gray-500">{title}</p>
-        <p className="font-medium">{value || 'N/A'}</p>
+        <p className="font-medium">{value ?? 'N/A'}</p>
       </div>
     </div>
   )
