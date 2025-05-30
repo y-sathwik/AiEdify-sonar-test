@@ -14,21 +14,23 @@ const StarterActivity: React.FC<StarterActivityProps> = ({ content }) => {
   const starterSection = extractSection(content, 'Starter Activity', 'Main Activities')
 
   // Extract duration from heading
-  const durationMatch =
-    starterSection.match(/Starter Activity \((\d+) minutes\)/) ||
-    starterSection.match(/starter activity \((\d+) minutes\)/)
+  const durationRegex = /Starter Activity \((\d+) minutes\)/
+  const durationRegexAlt = /starter activity \((\d+) minutes\)/
+  const durationMatch = durationRegex.exec(starterSection) || durationRegexAlt.exec(starterSection)
   const duration = durationMatch ? durationMatch[1] : null
 
   // Extract materials and clean content
+  const materialsRegex = /Materials:([\s\S]*?)(?=Instructions:|$)/
+  const materialsRegexAlt = /materials:([\s\S]*?)(?=instructions:|$)/
   const materialsMatch =
-    starterSection.match(/Materials:([\s\S]*?)(?=Instructions:|$)/) ||
-    starterSection.match(/materials:([\s\S]*?)(?=instructions:|$)/)
+    materialsRegex.exec(starterSection) || materialsRegexAlt.exec(starterSection)
   const materials = materialsMatch ? cleanContent(materialsMatch[1]) : []
 
   // Extract instructions and clean content
+  const instructionsRegex = /Instructions:([\s\S]*?)(?=Materials:|$)/
+  const instructionsRegexAlt = /instructions:([\s\S]*?)(?=materials:|$)/
   const instructionsMatch =
-    starterSection.match(/Instructions:([\s\S]*?)(?=Materials:|$)/) ||
-    starterSection.match(/instructions:([\s\S]*?)(?=materials:|$)/)
+    instructionsRegex.exec(starterSection) || instructionsRegexAlt.exec(starterSection)
   const instructions = instructionsMatch ? cleanContent(instructionsMatch[1]) : []
 
   // Extract description and process content
