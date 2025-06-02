@@ -33,8 +33,8 @@ const PlenarySection: React.FC<PlenarySectionProps> = ({ content }) => {
   // Extract description with better content cleaning
   const descriptionText = plenarySection
     .replace(/Plenary \(\d+ minutes\)|plenary \(\d+ minutes\)/g, '')
-    .replace(/Instructions:[\s\S]*?$/g, '')
-    .replace(/instructions:[\s\S]*?$/g, '')
+    .replace(/Instructions:[\s\S]*$/g, '')
+    .replace(/instructions:[\s\S]*$/g, '')
     .trim()
 
   const description = cleanContent(descriptionText)
