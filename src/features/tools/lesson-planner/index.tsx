@@ -204,7 +204,7 @@ export function LessonPlanner() {
                         <Checkbox
                           checked={field.value?.includes(option.id)}
                           onCheckedChange={(checked) => {
-                            const currentValues = field.value || []
+                            const currentValues = field.value ?? []
                             return checked
                               ? field.onChange([...currentValues, option.id])
                               : field.onChange(currentValues.filter((value) => value !== option.id))
@@ -250,7 +250,7 @@ export function LessonPlanner() {
                         <Checkbox
                           checked={field.value?.includes(option.id)}
                           onCheckedChange={(checked) => {
-                            const currentValues = field.value || []
+                            const currentValues = field.value ?? []
                             return checked
                               ? field.onChange([...currentValues, option.id])
                               : field.onChange(currentValues.filter((value) => value !== option.id))
