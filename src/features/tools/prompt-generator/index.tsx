@@ -21,6 +21,7 @@ import { generatePromptSuggestions } from './services'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { RefinedPrompt, PromptGeneratorResponse } from './schema/response-schema'
 import { Badge } from '@/components/ui/badge'
+import { generateStableKey } from '@/utils/key-generators'
 
 export function PromptGenerator() {
   const [response, setResponse] = useState<PromptGeneratorResponse | null>(null)
@@ -100,7 +101,10 @@ export function PromptGenerator() {
         </Card>
 
         {prompts.map((prompt, index) => (
-          <Card key={index} className="overflow-hidden">
+          <Card
+            key={generateStableKey('prompt', prompt.promptText, index)}
+            className="overflow-hidden"
+          >
             <CardHeader className="bg-secondary/10 border-b p-4">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <CardTitle className="text-secondary text-lg font-medium">
@@ -136,7 +140,10 @@ export function PromptGenerator() {
                     <h3 className="text-primary mb-2 font-semibold">Focus Areas</h3>
                     <ul className="list-inside list-disc text-sm">
                       {prompt.explanation.focusAreas.map((area, i) => (
-                        <li key={i} className="text-muted-foreground">
+                        <li
+                          key={generateStableKey('focus-area', area, i)}
+                          className="text-muted-foreground"
+                        >
                           {area}
                         </li>
                       ))}
