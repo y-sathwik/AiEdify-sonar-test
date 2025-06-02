@@ -206,7 +206,7 @@ export function PromptGenerator() {
                       <Checkbox
                         checked={field.value?.includes(area.id)}
                         onCheckedChange={(checked) => {
-                          const currentValues = field.value || []
+                          const currentValues = field.value ?? []
                           return checked
                             ? field.onChange([...currentValues, area.id])
                             : field.onChange(currentValues.filter((value) => value !== area.id))
