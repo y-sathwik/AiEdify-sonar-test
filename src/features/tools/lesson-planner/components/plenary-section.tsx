@@ -19,9 +19,7 @@ const PlenarySection: React.FC<PlenarySectionProps> = ({ content }) => {
   const plenaryLowerRegex = /plenary \((\d+) minutes\)/
 
   let durationMatch = plenaryRegex.exec(plenarySection)
-  if (!durationMatch) {
-    durationMatch = plenaryLowerRegex.exec(plenarySection)
-  }
+  durationMatch ??= plenaryLowerRegex.exec(plenarySection)
   const duration = durationMatch ? durationMatch[1] : null
 
   // Extract instructions
@@ -29,9 +27,7 @@ const PlenarySection: React.FC<PlenarySectionProps> = ({ content }) => {
   const instructionsLowerRegex = /instructions:([\s\S]*?)$/
 
   let instructionsMatch = instructionsRegex.exec(plenarySection)
-  if (!instructionsMatch) {
-    instructionsMatch = instructionsLowerRegex.exec(plenarySection)
-  }
+  instructionsMatch ??= instructionsLowerRegex.exec(plenarySection)
   const instructions = instructionsMatch ? cleanContent(instructionsMatch[1]) : []
 
   // Extract description with better content cleaning
