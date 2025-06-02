@@ -21,6 +21,32 @@ interface ToolLayoutProps {
 
 type Step = 'input' | 'loading' | 'response'
 
+interface NavigationBarProps {
+  step: Step
+  isGenerating: boolean
+  disableGenerate: boolean
+  onBackToInput: () => void
+  onGenerate: () => void
+}
+
+// Navigation buttons that appear at the top
+const NavigationBar = ({
+  step,
+  isGenerating,
+  disableGenerate,
+  onBackToInput,
+  onGenerate,
+}: NavigationBarProps) => {
+  if (step === 'input' || step === 'loading') return null
+
+  return (
+    <div className="mb-6 flex items-center justify-between">
+      <BackToInput onClick={onBackToInput} disabled={isGenerating} />
+      <RegenerateResponse onClick={onGenerate} disabled={isGenerating || disableGenerate} />
+    </div>
+  )
+}
+
 export function ToolLayout({
   toolName,
   inputForm,
@@ -53,19 +79,6 @@ export function ToolLayout({
   // Handle the generate button click
   const handleGenerate = () => {
     onGenerate()
-  }
-
-  // Navigation buttons that appear at the top
-  const NavigationBar = () => {
-    if (step === 'input' || step === 'loading') return null
-
-    return (
-      <div className="mb-6 flex items-center justify-between">
-        <BackToInput onClick={handleBackToInput} disabled={isGenerating} />
-
-        <RegenerateResponse onClick={handleGenerate} disabled={isGenerating || disableGenerate} />
-      </div>
-    )
   }
 
   // Input form view
@@ -101,7 +114,13 @@ export function ToolLayout({
   return (
     <>
       <div className="w-full">
-        <NavigationBar />
+        <NavigationBar
+          step={step}
+          isGenerating={isGenerating}
+          disableGenerate={disableGenerate}
+          onBackToInput={handleBackToInput}
+          onGenerate={handleGenerate}
+        />
 
         <Card className="bg-muted">
           <CardContent>
