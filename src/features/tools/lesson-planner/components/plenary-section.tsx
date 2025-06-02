@@ -23,8 +23,8 @@ const PlenarySection: React.FC<PlenarySectionProps> = ({ content }) => {
   const duration = durationMatch ? durationMatch[1] : null
 
   // Extract instructions
-  const instructionsRegex = /Instructions:([\s\S]*?)$/
-  const instructionsLowerRegex = /instructions:([\s\S]*?)$/
+  const instructionsRegex = /Instructions:([\s\S]*)$/
+  const instructionsLowerRegex = /instructions:([\s\S]*)$/
 
   let instructionsMatch = instructionsRegex.exec(plenarySection)
   instructionsMatch ??= instructionsLowerRegex.exec(plenarySection)
