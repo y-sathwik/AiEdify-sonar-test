@@ -29,7 +29,7 @@ export function ToolLayout({
   response,
   disableGenerate = false,
   error = null,
-}: ToolLayoutProps) {
+}: Readonly<ToolLayoutProps>) {
   const [step, setStep] = useState<Step>('input')
   const { setToolLoading } = useToolContext()
 
