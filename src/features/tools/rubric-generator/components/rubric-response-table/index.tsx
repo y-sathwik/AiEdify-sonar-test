@@ -1,6 +1,7 @@
 import React from 'react'
 import { RubricResponse } from '../../schema/response-schema'
 import { BookOpen, Award, User, Tag, School } from 'lucide-react'
+import { generateStableKey } from '../../../../../utils/key-generators'
 
 // Metadata card component
 interface MetadataCardProps {
@@ -165,7 +166,10 @@ export default function RubricResponseTable({ rubricData }: Readonly<RubricRespo
           </thead>
           <tbody>
             {rubricData.data.rubric.criteria.map((criterion, idx) => (
-              <tr key={idx} className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+              <tr
+                key={generateStableKey('criterion', criterion.name ?? 'unnamed', idx)}
+                className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
+              >
                 <td className="border-r border-b p-3 font-semibold">
                   {criterion.name ?? 'Unnamed Criterion'}
                 </td>
