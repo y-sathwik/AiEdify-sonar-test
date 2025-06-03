@@ -137,8 +137,8 @@ export default function RubricResponseTable({ rubricData }: Readonly<RubricRespo
   // Sort levels in descending order (highest level first)
   visibleLevels.sort((a, b) => {
     const numberRegex = /\d+/
-    const scoreA = parseInt(numberRegex.exec(a.label)?.[0] || '0')
-    const scoreB = parseInt(numberRegex.exec(b.label)?.[0] || '0')
+    const scoreA = parseInt(numberRegex.exec(a.label)?.[0] ?? '0')
+    const scoreB = parseInt(numberRegex.exec(b.label)?.[0] ?? '0')
     return scoreB - scoreA
   })
 
