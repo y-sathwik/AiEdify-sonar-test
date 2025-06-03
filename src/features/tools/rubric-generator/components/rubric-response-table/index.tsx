@@ -93,7 +93,7 @@ interface RubricResponseTableProps {
   rubricData: RubricResponse
 }
 
-export default function RubricResponseTable({ rubricData }: RubricResponseTableProps) {
+export default function RubricResponseTable({ rubricData }: Readonly<RubricResponseTableProps>) {
   if (!rubricData?.data || !rubricData.data.rubric || !rubricData.data.rubric.criteria) {
     return <div>No rubric data available</div>
   }
