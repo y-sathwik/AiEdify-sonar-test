@@ -123,22 +123,29 @@ export function ToolLayout({
         />
 
         <Card className="bg-muted">
-          <CardContent>
-            {error ? (
-              <div className="rounded-md border border-red-200 bg-red-50 text-red-800">
-                <h3 className="text-sm font-medium">Error</h3>
-                <div className="mt-2 text-sm whitespace-pre-wrap">{error}</div>
-              </div>
-            ) : typeof response === 'string' ? (
-              <div className="rounded-md whitespace-pre-wrap">{response}</div>
-            ) : (
-              <div className="rounded-md">{response}</div>
-            )}
-          </CardContent>
+          <CardContent>{renderResponse(error, response)}</CardContent>
         </Card>
       </div>
 
       <BackToTop threshold={200} />
     </>
   )
+}
+
+// Helper function to render the response content
+function renderResponse(error: string | null | undefined, response: ReactNode | string | null) {
+  if (error) {
+    return (
+      <div className="rounded-md border border-red-200 bg-red-50 text-red-800">
+        <h3 className="text-sm font-medium">Error</h3>
+        <div className="mt-2 text-sm whitespace-pre-wrap">{error}</div>
+      </div>
+    )
+  }
+
+  if (typeof response === 'string') {
+    return <div className="rounded-md whitespace-pre-wrap">{response}</div>
+  }
+
+  return <div className="rounded-md">{response}</div>
 }
